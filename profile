@@ -3,7 +3,7 @@ export HISTSIZE=10000
 shopt -s histappend
 
 # set some nice PS
-export PS1='\[\e[1;31m\][\T]\[\e[1;35m\][\u]\e[1;32m\][\w]\[\e[0m\]★'
+export PS1='\[\e[1;31m\][\T]\[\e[1;35m\][\u]\e[1;32m\][\w]\[\e[0m\]★  '
 export PS2="\[$(tput bold)$(tput setb 4)$(tput setaf 9)\]continue-\$ \[$(tput sgr0)\]"
 
 # local stuff
