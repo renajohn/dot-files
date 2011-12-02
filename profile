@@ -99,8 +99,8 @@ RET_VALUE='$(echo $RET)' #Ret value not colorized - you can modify it.
 RET_SMILEY='$(if [[ $RET = 0 ]]; then echo -ne "\[\e[0;32m\]✓"; else echo -ne "\[\e[0;31m\]✗"; fi;)'
 
 # set some nice PS
-export PS1="\[\e[0m\] ($RET_VALUE) $RET_SMILEY \e[1;32m\][\w]\[${White}\]\$ "
-export PS2="\[$White\]↪ "
+export PS1="\[\e[0m\] ($RET_VALUE) $RET_SMILEY \e[1;32m\][\w]\[${White}\]\$\[$Color_Off\] "
+export PS2="\[$White\]↪ \[$Color_Off\]"
 
 
 # local stuff
