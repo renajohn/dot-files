@@ -30,36 +30,32 @@ WHITE="\[\033[1;37m\]"
 LIGHT_GRAY="\[\033[0;37m\]"
 COLOR_NONE="\[\e[0m\]"
 
-function parse_git_branch {
-
-  git rev-parse --git-dir &> /dev/null
-  git_status="$(git status 2> /dev/null)"
-  branch_pattern="^# On branch ([^${IFS}]*)"
-  remote_pattern="# Your branch is (.*) of"
-  diverge_pattern="# Your branch and (.*) have diverged"
-  if [[ ! ${git_status}} =~ "working directory clean" ]]; then
-    state="${RED}⚡"
-  fi
-  # add an else if or two here if you want to get more specific
-  if [[ ${git_status} =~ ${remote_pattern} ]]; then
-    if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
-      remote="${YELLOW}↑"
+git_branch() {
+    b=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'`
+    echo $b;
+}
+commits_behind_develop() {
+    # Is there a develop branch ?
+    d=`git branch 2>/dev/null | grep -P '\s+develop$' | wc -l`
+    if [[ $d == "1" ]]; then
+        n=`git rev-list HEAD..develop | wc -l`
+        if [[ $n != "0" ]]; then
+            echo "${BLINK}, $n commits behind develop${NO_BLINK}"
+        fi;
+    fi;
+}
+git_prompt() {
+    branch=$(git_branch);
+    if [[ "$branch" == "" ]]; then
+        echo "";
     else
-      remote="${YELLOW}↓"
+        echo "${GREEN}[$branch$(commits_behind_develop)${GREEN}]";
     fi
-  fi
-  if [[ ${git_status} =~ ${diverge_pattern} ]]; then
-    remote="${YELLOW}↕"
-  fi
-  if [[ ${git_status} =~ ${branch_pattern} ]]; then
-    branch=${BASH_REMATCH[1]}
-    echo " (${branch})${remote}${state}"
-  fi
 }
 
 function prompt_func() {
     previous_return_value=$?;    
-    prompt="${TITLEBAR}${BLUE}[${LIGHT_GRAY}\w${GREEN}$(parse_git_branch)${BLUE}]${COLOR_NONE} "
+    prompt="${TITLEBAR}${BLUE}[${LIGHT_GRAY}\w${GREEN}$(git_prompt)${BLUE}]${COLOR_NONE} "
     if test $previous_return_value -eq 0
     then
         PS1="${prompt}➔ "
