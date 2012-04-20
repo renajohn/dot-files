@@ -19,9 +19,11 @@
 
     "predef"        : [  // Custom globals.
         "SC",
-        "BugBuster"
-        //"anotherCoolGlobal",
-        //"iLoveDouglas"
+        "BB",
+        "YES",
+        "NO",
+        "sc_require",
+        "sc_super"
     ],
 
 
