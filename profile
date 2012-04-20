@@ -49,7 +49,7 @@ git_prompt() {
     if [[ "$branch" == "" ]]; then
         echo "";
     else
-        echo "${GREEN}[$branch$(commits_behind_develop)${GREEN}]";
+        echo "${GREEN} ($branch$(commits_behind_develop)${GREEN})";
     fi
 }
 
