@@ -32,6 +32,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git github node npm redis-cli vundle gnu-utils history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
+autoload zmv
 
 # local stuff
 if [ -f ~/.profile.local ]; then
