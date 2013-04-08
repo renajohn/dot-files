@@ -26,12 +26,15 @@ ZSH_THEME="clean"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
+# automatically start a tmux session upon logging in.
+ZSH_TMUX_AUTOSTART="true"
+
 unsetopt correct_all
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git github node npm redis-cli vundle gnu-utils history-substring-search)
+plugins=(tmux git github node npm redis-cli vundle gnu-utils history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
