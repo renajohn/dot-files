@@ -15,7 +15,7 @@ ZSH_THEME="clean"
 # CASE_SENSITIVE="true"
 
 # Comment this out to disable weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
@@ -37,6 +37,7 @@ unsetopt correct_all
 plugins=(tmux git github node npm redis-cli vundle gnu-utils history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
+autoload zmv
 
 # local stuff
 if [ -f ~/.profile.local ]; then
@@ -44,3 +45,4 @@ if [ -f ~/.profile.local ]; then
 fi
 
 export EDITOR=vim
+export LANG=en_US.UTF-8
