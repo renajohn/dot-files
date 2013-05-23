@@ -46,3 +46,5 @@ fi
 
 export EDITOR=vim
 export LANG=en_US.UTF-8
+
+zstyle :omz:plugins:ssh-agent agent-forwarding on
