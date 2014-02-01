@@ -1,4 +1,4 @@
-export LC_ALL=en_US.UTF-8  
+export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # Path to your oh-my-zsh configuration.
@@ -49,5 +49,22 @@ fi
 
 export EDITOR=vim
 export LANG=en_US.UTF-8
+
+# Update all env
+tmup ()
+{
+    echo -n "Updating to latest tmux environment...";
+    export IFS=",";
+    for line in $(tmux showenv -t $(tmux display -p "#S") | tr "\n" ",");
+    do
+        if [[ $line == -* ]]; then
+            unset $(echo $line | cut -c2-);
+        else
+            export $line;
+        fi;
+    done;
+    unset IFS;
+    echo "Done"
+}
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
