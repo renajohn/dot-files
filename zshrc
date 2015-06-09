@@ -18,6 +18,11 @@ ZSH_THEME="clean"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vi="NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim"
+alias nv="NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim"
+alias vim="NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim"
+alias logGlass='tail -f ~/dev/controller-tmp/glassfish/glassfish/domains/domain1/logs/server.log '
+alias redeploy-controller='cd ~/dev/codebase/controller/controller-app; gradlew --stacktrace --info reset -PrecreateDbschema=false -PinstrumentController=true'
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -42,7 +47,7 @@ unsetopt correct_all
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(tmux git github node npm redis-cli vundle gnu-utils history-substring-search)
+plugins=(git github node npm redis-cli vundle gnu-utils history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 autoload zmv
@@ -78,5 +83,8 @@ tmup ()
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=/usr/local/bin:$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# chef user
+export CHEFUSER=rjl
 
