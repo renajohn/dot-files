@@ -51,6 +51,10 @@ autoload zmv
 if [ -f ~/.profile.local ]; then
   . ~/.profile.local
 fi
+# local stuff
+if [ -f ~/.profile ]; then
+  . ~/.profile
+fi
 
 export EDITOR=vim
 export LANG=en_US.UTF-8
