@@ -1,8 +1,8 @@
 [user]
   name = Renault John Lecoultre
-  email = rjl@bugbuster.com
+  email = renault.lecoultre@appdynamics.com
 [color]
-  ui = auto
+  ui = true
 [color "branch"]
   current = yellow reverse
   local = yellow
@@ -12,16 +12,15 @@
   frag = magenta bold
   old = red bold
   new = green bold
+  whitespace = red reverse
 [color "status"]
   added = yellow
   changed = green
   untracked = cyan
-[color]
-  ui = true
-[color "diff"]
-  whitespace = red reverse
 [core]
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	autocrlf = input
+	excludesfile = /Users/rjl/.gitignore_global
 [alias]
   st = status
   ci = commit
@@ -33,4 +32,16 @@
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
   ls = ls-files
 [merge]
-  tool = mvimdiff
+	tool = diffmerge
+[branch]
+	autosetuprebase = always
+[log]
+	date = local
+[diff]
+	tool = diffmerge
+	external = diffmerge-diff.sh
+[difftool "diffmerge"]
+	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+[mergetool "diffmerge"]
+	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+	trustExitCode = true
